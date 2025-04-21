@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-xdist-lock"
+version = "0.1.0"
+description = "Plugin for distributed test synchronization in pytest-xdist using resource locks"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  { name = "KrzysztofRybczynski", email = "rybczynski.k@gmail.com" }
+]
+dependencies = [
+  "pytest>=6.0",
+  "pytest-xdist>=2.0"
+]
+
+[project.optional-dependencies]
+redis = ["redis>=4.0"]
+dev = ["pytest", "pytest-cov"]
+
+[project.entry-points.pytest11]
+xdist_lock = "pytest_xdist_lock.plugin"
+
+[project.urls]
+Homepage = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock"
+Repository = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock"
+Issues = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock/issues"
+
+[tool.setuptools]
+packages = ["pytest_xdist_lock"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+pytest_xdist_lock = ["py.typed"]

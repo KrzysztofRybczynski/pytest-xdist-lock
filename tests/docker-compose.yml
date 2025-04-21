@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+  tester:
+    image: python:3.8-slim
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - PYTHONPATH=/app
+    volumes:
+      - ../:/app
+    working_dir: /app
+    command: >
+      sh -c "pip install --upgrade pip &&
+      pip install --no-cache-dir -e .[test] &&
+      echo -e '\n\033[1;34m=== TESTING FILE BACKEND ===\033[0m' &&
+      pytest -v -n auto tests/ --xdist-lock-backend=file --xdist-lock-file=/tmp/pytest_locks.json &&
+      echo -e '\n\033[1;34m=== TESTING REDIS BACKEND ===\033[0m' &&
+      pytest -v -n auto tests/ --xdist-lock-backend=redis --xdist-lock-redis-url=$$REDIS_URL"
