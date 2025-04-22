@@ -3,8 +3,12 @@
 [![Python Version](https://img.shields.io/pypi/pyversions/pytest-xdist-lock)](https://pypi.org/project/pytest-xdist-lock/)
 [![PyPI Version](https://img.shields.io/pypi/v/pytest-xdist-lock)](https://pypi.org/project/pytest-xdist-lock/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Project Description: Extension for pytest-xdist adding test and resource group locks for local and distributed runs](https://img.shields.io/badge/Description-Extension%20for%20pytest--xdist%20adding%20support%20for%20test--level%20named%20locks.-blue?logo=pytest&labelColor=grey)](https://pypi.org/project/pytest-xdist-lock/)
 
-Plugin for distributed test synchronization in pytest-xdist using resource locks.
+pytest-xdist-lock is a plugin that extends pytest-xdist by introducing named resource locks to coordinate test execution.
+It ensures that selected tests do not run concurrently when accessing shared resources (like files, ports, or external services), even when executed in parallel with multiple workers.
+
+This helps avoid race conditions and makes parallel test execution safer and more reliable – both locally and in distributed CI environments.
 
 ## Features
 
