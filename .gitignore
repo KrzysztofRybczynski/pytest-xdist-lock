@@ -1,0 +1,10 @@
+*.pyc
+*.o
+*.bak
+*.afl
+*.log
+__pycache__
+.pytest_cache
+.pytest_locks
+dist/
+*.egg-info
