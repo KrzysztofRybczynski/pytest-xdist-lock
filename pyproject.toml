@@ -12,6 +12,15 @@ license = {text = "MIT"}
 authors = [
   { name = "KrzysztofRybczynski", email = "rybczynski.k@gmail.com" }
 ]
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Pytest",
+    "Operating System :: OS Independent",
+]
 dependencies = [
   "pytest>=6.0",
   "pytest-xdist>=2.0"
