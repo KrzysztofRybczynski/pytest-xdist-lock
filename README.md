@@ -109,12 +109,12 @@ Test Worker 1           Lock Agent            Test Worker 2
 
 ## API Reference
 
-| Parameter    | Type              | Default | Description                                        |
-|:-------------|:------------------|:--------|:---------------------------------------------------|
-| tests        | str/List[str]     | None    | Test IDs to block                                  |
-| groups       | str/List[str]     | None    | Resource groups to block                           |
-| timeout      | float             | 600     | ini setting	Max wait time (seconds)                |
-| on_timeout   | str/callable      | "skip"  | Action: "skip", "fail", "xfail" or custom function |
+| Parameter    | Type          | Default | Description                                        |
+|:-------------|:--------------|:--------|:---------------------------------------------------|
+| tests        | str/List[str] | None    | Test IDs to block                                  |
+| groups       | str/List[str] | None    | Resource groups to block                           |
+| timeout      | int           | 600     | ini setting	Max wait time (seconds)                |
+| on_timeout   | str/callable  | "skip"  | Action: "skip", "fail", "xfail" or custom function |
 
 ### Marker @pytest.mark.xdist_lock ###
 ```python 
@@ -197,11 +197,21 @@ Q: Is there a performance overhead?<br>
 A: Minimal with Redis, file backend may slow down with many workers.
 
 ## Changelog
-0.1.0 (Current)
+0.1.4 (Current)
+Packaging fix: Add redis dependency.
+
+0.1.3
+- Packaging fix: Include locks/ subpackage and ensure correct distribution on PyPI.
+
+0.1.2
+- Minor docs fixes.
+
+0.1.0
 - Initial stable release
 - File and Redis backends
 - Marker and fixture support
 - Custom timeout handlers
+
 
 ## License
 MIT - See LICENSE for details.

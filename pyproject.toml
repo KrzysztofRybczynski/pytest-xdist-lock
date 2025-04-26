@@ -4,16 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-xdist-lock"
-version = "0.1.0"
+version = "0.1.4"
 description = "Extension for pytest-xdist adding test and resource group locks for local and distributed runs"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
   { name = "KrzysztofRybczynski", email = "rybczynski.k@gmail.com" }
 ]
 classifiers = [
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -23,12 +22,9 @@ classifiers = [
 ]
 dependencies = [
   "pytest>=6.0",
-  "pytest-xdist>=2.0"
+  "pytest-xdist>=2.0",
+  "redis>=4.0"
 ]
-
-[project.optional-dependencies]
-redis = ["redis>=4.0"]
-dev = ["pytest", "pytest-cov"]
 
 [project.entry-points.pytest11]
 xdist_lock = "pytest_xdist_lock.plugin"
@@ -38,9 +34,5 @@ Homepage = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock"
 Repository = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock"
 Issues = "https://github.com/KrzysztofRybczynski/pytest-xdist-lock/issues"
 
-[tool.setuptools]
-packages = ["pytest_xdist_lock"]
-include-package-data = true
-
-[tool.setuptools.package-data]
-pytest_xdist_lock = ["py.typed"]
+[tool.setuptools.packages.find]
+where = ["."]
