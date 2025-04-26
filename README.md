@@ -131,7 +131,7 @@ def test_example_2():
 ```python
 def test_example_1(xdist_lock):
     # safe test code
-    with xdist_lock(group="db_users"):
+    with xdist_lock(groups="db_users"):
         # Critical test code
     
     # safe test code
@@ -139,7 +139,7 @@ def test_example_1(xdist_lock):
 
 def test_example_2(xdist_lock):
     # safe test code
-    with xdist_lock(group="db_users"):
+    with xdist_lock(groups="db_users"):
         # Critical test code
 
     # safe test code
@@ -197,8 +197,11 @@ Q: Is there a performance overhead?<br>
 A: Minimal with Redis, file backend may slow down with many workers.
 
 ## Changelog
+0.1.5 (Current)
+- Code cleanup
+
 0.1.4 (Current)
-Packaging fix: Add redis dependency.
+- Packaging fix: Add redis dependency.
 
 0.1.3
 - Packaging fix: Include locks/ subpackage and ensure correct distribution on PyPI.
@@ -215,5 +218,3 @@ Packaging fix: Add redis dependency.
 
 ## License
 MIT - See LICENSE for details.
-
-

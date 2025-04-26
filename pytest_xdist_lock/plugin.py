@@ -1,5 +1,3 @@
-# import logging
-# import os
 import tempfile
 import pytest
 from contextlib import contextmanager
@@ -7,13 +5,6 @@ from pathlib import Path
 from typing import Union
 from pytest_xdist_lock.locks.file_lock import FileLockAdapter
 from pytest_xdist_lock.locks.redis_lock import RedisLockAdapter
-
-#
-# logging.basicConfig(
-#     level=logging.INFO,
-#     format=f'%(asctime)s {os.environ.get("PYTEST_XDIST_WORKER", "%(name)s")} %(levelname)s - %(message)s',
-#     handlers=[logging.StreamHandler()]
-# )
 
 def pytest_addoption(parser):
     default_lock_file = str(Path(tempfile.gettempdir()) / "pytest_xdist_locks.json")
@@ -65,7 +56,6 @@ def pytest_configure(config):
             raise ValueError("Redis backend requires 'xdist_lock_redis_url'")
         config.lock_adapter = RedisLockAdapter(url)
     else:
-        #lock_file = config.getoption("--xdist-lock-file") or config.getini("xdist-lock-file")
         config.lock_adapter = FileLockAdapter(lock_file)
 
     config.xdist_lock_enabled = True
@@ -88,7 +78,6 @@ def _process_timeout_action(on_timeout, message):
         try:
             on_timeout()
         except Exception:
-            #logging.error(f"Custom timeout handler failed: {str(e)}")
             pytest.skip(f"{message} (custom handler failed)")
 
     elif isinstance(on_timeout, str):
